@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b35">
+  <title>For Davis 💙</title>
+  <style>
+    :root{
+      --bg:#101b35;
+      --pink:#75c8ff;
+      --purple:#9daeff;
+      --cream:#f2f7ff;
+      --muted:#c3d5ef;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 15% 10%,#244b7c 0,transparent 34%),
+        radial-gradient(circle at 90% 80%,#164c72 0,transparent 30%),
+        var(--bg);
+      color:var(--cream);
+      font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;
+      overflow-x:hidden
+    }
+    button{font:inherit;cursor:pointer}
+    .wrap{width:min(920px,92%);margin:auto}
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:22px 0;
+      color:var(--muted);
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform:uppercase
+    }
+    .pill{
+      border:1px solid #ffffff35;
+      border-radius:99px;
+      padding:8px 12px;
+      background:#ffffff0d
+    }
+    .hero{
+      min-height:84vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      position:relative;
+      padding:35px 0 65px
+    }
+    .hero-inner{
+      max-width:720px;
+      position:relative;
+      z-index:1
+    }
+    .eyebrow{
+      color:#a9dfff;
+      letter-spacing:.2em;
+      font-size:.78rem;
+      font-weight:800
+    }
+    h1{
+      font-size:clamp(3.3rem,11vw,7.2rem);
+      line-height:.92;
+      margin:18px 0 14px;
+      letter-spacing:-.07em
+    }
+    .gradient{
+      background:linear-gradient(100deg,#ffffff,#79d0ff 48%,#a9baff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent
+    }
+    .subtitle{
+      color:var(--muted);
+      font-size:clamp(1rem,3vw,1.25rem);
+      line-height:1.65;
+      max-width:520px;
+      margin:18px auto 28px
+    }
+    .btn{
+      border:0;
+      border-radius:16px;
+      padding:14px 22px;
+      font-weight:900;
+      color:#10213b;
+      background:linear-gradient(110deg,#79d0ff,#b0bdff);
+      box-shadow:0 10px 30px #65baff33;
+      transition:.2s transform,.2s box-shadow
+    }
+    .btn:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 14px 35px #65baff55
+    }
+    .btn.secondary{
+      background:#ffffff12;
+      color:var(--cream);
+      border:1px solid #ffffff35;
+      box-shadow:none
+    }
+    .sticker{
+      font-size:clamp(3rem,9vw,5.5rem);
+      display:inline-block;
+      animation:bob 2.8s ease-in-out infinite
+    }
+    @keyframes bob{
+      50%{transform:translateY(-13px) rotate(5deg)}
+    }
+    .float{
+      position:absolute;
+      pointer-events:none;
+      opacity:.75;
+      animation:drift 7s ease-in-out infinite
+    }
+    .f1{top:12%;left:8%;font-size:2rem}
+    .f2{top:22%;right:9%;font-size:2.4rem;animation-delay:-2s}
+    .f3{bottom:13%;left:15%;font-size:1.7rem;animation-delay:-4s}
+    .f4{bottom:18%;right:13%;font-size:2rem;animation-delay:-1s}
+    @keyframes drift{
+      50%{transform:translate(12px,-22px) rotate(16deg)}
+    }
+    section{padding:68px 0}
+    .section-title{
+      text-align:center;
+      font-size:clamp(2rem,6vw,3.5rem);
+      letter-spacing:-.05em;
+      margin:0 0 12px
+    }
+    .section-copy{
+      text-align:center;
+      color:var(--muted);
+      margin:0 auto 30px;
+      max-width:550px;
+      line-height:1.6
+    }
+    .panel{
+      background:#ffffff0c;
+      border:1px solid #ffffff20;
+      border-radius:26px;
+      padding:clamp(20px,5vw,34px);
+      box-shadow:0 20px 70px #080e2055;
+      backdrop-filter:blur(12px)
+    }
+    .mission{text-align:center}
+    .mission-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:24px
+    }
+    .secret{
+      min-height:145px;
+      border:1px solid #ffffff20;
+      border-radius:20px;
+      background:#ffffff0b;
+      color:var(--cream);
+      padding:18px 12px;
+      transition:.2s
+    }
+    .secret:hover{
+      transform:translateY(-5px);
+      background:#ffffff16
+    }
+    .secret .emoji{
+      font-size:2.2rem;
+      display:block;
+      margin-bottom:8px
+    }
+    .secret small{color:var(--muted)}
+    .message{
+      display:none;
+      margin-top:16px;
+      padding:17px;
+      border-radius:16px;
+      background:#65baff1a;
+      border:1px solid #65baff55;
+      color:#d9efff;
+      line-height:1.8;
+      text-align:left
+    }
+    .message.show{
+      display:block;
+      animation:pop .35s ease
+    }
+    /* Imagen de los renitos */
+    .secret-image{
+      display:none;
+      width:100%;
+      max-width:100%;
+      height:auto;
+      max-height:70vh;
+      object-fit:contain;
+      margin:20px auto 5px;
+      border-radius:20px;
+      border:1px solid #ffffff25;
+      box-shadow:0 15px 40px #080e2055;
+      animation:pop .4s ease
+    }
+    @keyframes pop{
+      from{opacity:0;transform:scale(.96)}
+      to{opacity:1;transform:scale(1)}
+    }
+    .letter{
+      max-width:680px;
+      margin:auto;
+      line-height:1.9;
+      color:#eaf3ff;
+      font-size:1.05rem
+    }
+    .letter p{margin:0 0 16px}
+    .signature{
+      color:#8dccff;
+      font-weight:900;
+      font-size:1.25rem
+    }
+    /* Reproductor vertical 9:16 */
+    .video-box{text-align:center}
+    .video-frame{
+      width:min(100%,360px);
+      aspect-ratio:9/16;
+      max-height:80vh;
+      background:linear-gradient(135deg,#1d4269,#15213d);
+      border:1px solid #ffffff25;
+      border-radius:22px;
+      margin:24px auto 16px;
+      display:grid;
+      place-items:center;
+      overflow:hidden
+    }
+    video{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background:#080e20;
+      display:block
+    }
+    .video-placeholder{
+      padding:20px;
+      color:var(--muted)
+    }
+    .tiny{
+      font-size:.85rem;
+      color:#b9cce6;
+      line-height:1.6
+    }
+    footer{
+      text-align:center;
+      padding:35px 0 55px;
+      color:#b9cce6;
+      font-size:.85rem
+    }
+    .confetti{
+      position:fixed;
+      top:-20px;
+      z-index:5;
+      pointer-events:none;
+      animation:fall linear forwards
+    }
+    @keyframes fall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0
+      }
+    }
+    .hidden{display:none!important}
+    @media(max-width:620px){
+      .mission-grid{grid-template-columns:1fr}
+      .secret{min-height:110px}
+      .top{font-size:.65rem}
+      .hero{min-height:78vh}
+      .f1{left:3%}
+      .f2{right:3%}
+      .video-frame{
+        width:min(100%,340px);
+        max-height:75vh
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <span>✦ Algo lindo pa usted</span>
+      <span class="pill">20 · 11 · 2026</span>
+    </header>
+    <main>
+      <section class="hero" id="inicio">
+        <span class="float f1">💙</span>
+        <span class="float f2">✨</span>
+        <span class="float f3">🪩</span>
+        <span class="float f4">💌</span>
+        <div class="hero-inner">
+          <div class="sticker">🎂</div>
+          <div class="eyebrow">
+            Mi cumpleñero · 20 DE NOVIEMRE 2026
+          </div>
+          <h1><span class="gradient">HEY, DAVIS!</span></h1>
+          <p class="subtitle">
+            Hoy el protagonista eres tú. Preparé algo pequeñito,
+            pero hecho con muchísimo cariño. ¿Listo para descubrirlo?
+          </p>
+          <button class="btn" onclick="startSurprise()">
+            ABRIR MI SORPRESA ✨
+          </button>
+        </div>
+      </section>
+      <section id="mision" class="hidden">
+        <h2 class="section-title">Tu misión especial 🕵️‍♂️</h2>
+        <p class="section-copy">
+          Hay tres cositas escondidas por aquí. Toca cada tarjeta
+          para descubrir lo que quiero decirte.
+        </p>
+        <div class="panel mission">
+          <div class="mission-grid">
+            <button class="secret" onclick="reveal(0)">
+              <span class="emoji">💗</span>
+              <b>Secreto #1</b><br>
+              <small>Toca para descubrir</small>
+            </button>
+            <button class="secret" onclick="reveal(1)">
+              <span class="emoji">🧸</span>
+              <b>Secreto #2</b><br>
+              <small>Toca para descubrir</small>
+            </button>
+            <button class="secret" onclick="reveal(2)">
+              <span class="emoji">🌟</span>
+              <b>Secreto #3</b><br>
+              <small>Toca para descubrir</small>
+            </button>
+          </div>
+          <div id="message" class="message" aria-live="polite"></div>
+          <!-- Fotografía de los renitos -->
+          <img
+            id="renosImage"
+            class="secret-image"
+            src="Renos.JPG"
+            alt="Los dos renitos que te regalé"
+          >
+          <p id="progress" class="tiny">
+            0 de 3 secretos descubiertos
+          </p>
+          <button
+            id="letterBtn"
+            class="btn hidden"
+            onclick="showLetter()"
+          >
+            DESBLOQUEAR MI CARTA 💌
+          </button>
+        </div>
+      </section>
+      <section id="carta" class="hidden">
+        <h2 class="section-title">Una carta para ti 💌</h2>
+        <p class="section-copy">
+          Puedes leerla con calma. Es un pedacito de todo lo que quiero decirte.
+        </p>
+        <article class="panel letter">
+          <p>Mi Davis,</p>
+          <p>
+            ¡Feliz cumpleaños! 🥳 Hoy quiero recordarte lo especial que eres
+            y lo feliz que me hace poder compartir momentos contigo.
+          </p>
+          <p>
+            Espero que este nuevo año de vida te regale muchísimas razones
+            para sonreír, sueños que se hagan realidad, aventuras inesperadas
+            y personas que te quieran bonito.
+          </p>
+          <p>
+            Gracias por cada risa, cada abrazo, cada ocurrencia y por todos
+            esos pequeños momentos que, sin hacer mucho ruido,
+            se vuelven recuerdos enormes para mí.
+          </p>
+          <p>
+            Deseo seguir creando historias contigo, celebrar tus logros
+            y acompañarte en todo lo bonito que viene.
+            Hoy toca celebrarte a ti, porque te lo mereces muchísimo.
+          </p>
+          <p>
+            Y aunque esta página tenga botones, sorpresas y muchas animaciones,
+            nada de eso alcanza para explicar lo mucho que significas para mí. ❤️
+          </p>
+          <p class="signature">
+            Con muchísimo cariño, yo. 💙
+          </p>
+        </article>
+        <div style="text-align:center;margin-top:24px">
+          <button class="btn" onclick="showVideo()">
+            HAY ALGO MÁS PARA TI... 🎬
+          </button>
+        </div>
+      </section>
+      <section id="video" class="hidden">
+        <div class="video-box panel">
+          <div class="sticker">🎁</div>
+          <h2 class="section-title">
+            Y ahora... mírame un momentito ❤️
+          </h2>
+          <p class="section-copy">
+            Quería que también pudieras escuchar esto de mi propia voz.
+          </p>
+          <div class="video-frame" id="videoFrame">
+            <video controls playsinline preload="metadata">
+              <source src="Cumple.MOV" type="video/quicktime">
+              Tu navegador no puede reproducir este video.
+            </video>
+          </div>
+          <p class="tiny">
+            Hecho especialmente para ti, Davis. Feliz cumpleaños. 💙
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      Hecho con amor, un poquito de creatividad y muchas ganas de verte sonreír. 💙
+    </footer>
+  </div>
+  <script>
+    const secrets = [
+      "Dicen que los cumpleaños solamente duran 24 horas, pero yo creo que las personas especiales merecen ser celebradas incluso cuando el calendario ya pasó la fecha. 💗",
+      "¿Recuerdas los renitos que te regalé el año pasado? 🦌\n\nAhora bien, ¿sabías que los renos son animales que pueden recorrer enormes distancias y que viven en grupos para protegerse y acompañarse?\n\nElegí estos dos renitos porque me gustó la idea de que representaran algo bonito: que la vida es un camino lleno de cambios, aventuras y, a veces, dificultades, pero siempre es más bonito cuando tenemos a alguien con quien compartirlo ❤️",
+      "¿Sabías que existen investigaciones que demuestran que el amor romántico puede mantenerse incluso después de décadas de estar con una persona?\n\nEso está cool, porque significa que el amor no necesariamente tiene que quedarse en una sola emoción, y algo que dice es que también puede convertirse en admiración, confianza, complicidad, tranquilidad y chupetones en el cuello…\n\nSON DATOS ☝🏻😍"
+    ];
+    const found = new Set();
+    function startSurprise(){
+      document.getElementById('mision').classList.remove('hidden');
+      document.getElementById('mision').scrollIntoView({
+        behavior:'smooth'
+      });
+      confetti();
+    }
+    function reveal(i){
+      found.add(i);
+      const box = document.getElementById('message');
+      const image = document.getElementById('renosImage');
+      box.textContent = secrets[i];
+      box.classList.remove('show');
+      void box.offsetWidth;
+      box.classList.add('show');
+      // La imagen aparece únicamente al descubrir el secreto número 2.
+      image.style.display = i === 1 ? 'block' : 'none';
+      document.getElementById('progress').textContent =
+        `${found.size} de 3 secretos descubiertos`;
+      if(found.size === 3){
+        document.getElementById('letterBtn').classList.remove('hidden');
+      }
+    }
+    function showLetter(){
+      document.getElementById('carta').classList.remove('hidden');
+      document.getElementById('carta').scrollIntoView({
+        behavior:'smooth'
+      });
+      confetti();
+    }
+    function showVideo(){
+      document.getElementById('video').classList.remove('hidden');
+      document.getElementById('video').scrollIntoView({
+        behavior:'smooth'
+      });
+      confetti();
+    }
+    function confetti(){
+      const pieces = ['💙','🩵','✨','🎉','⭐','💕'];
+      for(let i = 0; i < 24; i++){
+        const el = document.createElement('span');
+        el.className = 'confetti';
+        el.textContent = pieces[
+          Math.floor(Math.random()*pieces.length)
+        ];
+        el.style.left = Math.random()*100+'vw';
+        el.style.animationDuration =
+          (2.5+Math.random()*2.5)+'s';
+        el.style.fontSize =
+          (14+Math.random()*18)+'px';
+        document.body.appendChild(el);
+        setTimeout(()=>el.remove(),5200);
+      }
+    }
+  </script>
+</body>
+</html>
